@@ -26,10 +26,22 @@ createdb newslynx
     
 * modify default recipes and tags in [`example_config/defaults/recipes/`](example_config/defaults/recipes/) and [`example_config/defaults/tags/`](example_config/defaults/tags/), respectively. These tags and recipes will be created everytime a new organization is added.
 
+* make sure that redis is running in your computer, fire it if it is not
+
+```
+redis-server
+```
+
 * initialize the database:
 
 ```
 newslynx init
+```
+
+* copy default tags and recipes to `~/.newslynx/`
+
+```
+make defaults
 ```
 
 * populate with sample data
