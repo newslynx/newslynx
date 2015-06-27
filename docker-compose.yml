@@ -5,8 +5,8 @@ newslynx:
    - redis
   ports:
    - "80"
-  # volumes:
-  #  # - ./secrets:/secrets
+  volumes:
+   - ./config:/root/.newslynx
 postgres:
   image: postgres
   environment:
