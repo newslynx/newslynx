@@ -17,6 +17,7 @@ addressable==1.4.2
 alembic==0.7.5.post2
 bitly-api==0.3
 click==3.3
+colorama==0.3.3
 decorator==3.4.2
 docopt==0.6.2
 google-api-python-client==1.4.0
