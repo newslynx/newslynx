@@ -66,7 +66,7 @@ newslynx init
 
 - In debug mode: `newslynx debug`
 - Debug mode with errors: `newslynx debug --raise-errors`
-- Production `guniorn` server: `./run`
+- Production `gunicorn` server: `./run`
 
 #### Start the task workers
 
