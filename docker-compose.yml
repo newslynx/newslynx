@@ -1,0 +1,20 @@
+newslynx:
+  build: .
+  links:
+   - postgres
+   - redis
+  ports:
+   - "80"
+  volumes:
+   - ./config:/root/.newslynx
+postgres:
+  image: postgres
+  environment:
+    POSTGRES_DB: newslynx
+  command: postgres
+  ports:
+   - "5432"
+redis:
+  image: redis
+  ports:
+   - "3179"
