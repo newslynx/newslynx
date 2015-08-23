@@ -20,6 +20,8 @@ def setup(parser):
                         dest='author', default='Merlynne')
     parser.add_argument('-t', '--template', dest='template', type=str,
                         help='A path to a module template. Defaults to built-in template.', default=None)
+    parser.add_argument('-u', '--update', action="store_true",
+                        help='Overwrites existing template files.')
     return 'sc-create', run
 
 
@@ -41,9 +43,13 @@ def run(opts, log, **kw):
         'description': opts.description,
         'github_user': opts.github_user,
         'author': opts.author,
+        'update': opts.update
     })
     if opts.template:
         kw['tmpl_dir'] = opts.template
-    log.info(
-        'Creating Sous Chef Module: {}'.format(opts.module_name))
+    if not opts.update:
+        log.info('Creating Sous Chef Module: {}'.format(opts.module_name))
+
+    else:
+        log.warning('Updating Sous Chef Module: {}'.format(opts.module_name))
     sc_module.create(**kw)
