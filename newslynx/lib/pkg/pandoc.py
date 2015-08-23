@@ -3,7 +3,7 @@ from os.path import exists
 from tempfile import NamedTemporaryFile
 import os
 
-from newslynx.settings import PANDOC_PATH
+from newslynx.core import settings
 
 
 class Document(object):
@@ -66,7 +66,7 @@ class Document(object):
 
     def _output(self, format):
         subprocess_arguments = [
-            PANDOC_PATH, '--from=%s' % self._format, '--to=%s' % format]
+            settings.PANDOC_PATH, '--from=%s' % self._format, '--to=%s' % format]
         subprocess_arguments.extend(self.arguments)
 
         p = subprocess.Popen(
@@ -77,7 +77,7 @@ class Document(object):
         return p.communicate(self._content)[0]
 
     def to_file(self, output_filename):
-        '''handles pdf and epub format. 
+        '''handles pdf and epub format.
         Inpute: output_filename should have the proper extension.
         Output: The name of the file created, or an IOError if failed'''
         temp_file = NamedTemporaryFile(mode="w", suffix=".md", delete=False)
@@ -85,7 +85,7 @@ class Document(object):
         temp_file.close()
 
         subprocess_arguments = [
-            PANDOC_PATH, temp_file.name, '-o %s' % output_filename]
+            settings.PANDOC_PATH, temp_file.name, '-o %s' % output_filename]
         subprocess_arguments.extend(self.arguments)
         cmd = " ".join(subprocess_arguments)
         fin = os.popen(cmd)
